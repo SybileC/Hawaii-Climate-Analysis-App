@@ -7,20 +7,41 @@ from sqlalchemy import create_engine, func
 
 from flask import Flask, jsonify
 
+engine = create_engine("sqlite:///Resources/hawaii.sqlite")
+
+# reflect an existing database into a new model
+Base = automap_base()
+# reflect the tables
+Base.prepare(engine, reflect=True)
+
+# Save reference to the tables
+Station = Base.classes.station
+Measurement = Base.classes.measurement
 
 # Create an app
 app = Flask(__name__)
 
 
-# 3. Define what to do when a user hits the index route
 @app.route("/")
 def home():
-    routes = ['precipitation', 'stations', 'tobs', 'start']
-    return routes
+    
+    return (
+        f"Available Routes:<br/>"
+        f"/api/v1.0/precipitation<br/>"
+        f"/api/v1.0/stations<br/>"
+        f"/api/v1.0/tobs<br/>"
+        f"/api/v1.0/<start>"
+    )
 
-@app.route("/precipitation")
+
+@app.route("/api/v1.0/precipitation")
 def precipitation():
-    return
+
+data = session.query(Measurement.date, Measurement.prcp).filter(Measurement.date > year).all()
+
+
+
+
 
 
 
