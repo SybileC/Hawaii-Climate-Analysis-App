@@ -78,6 +78,15 @@ def tobs():
     return jsonify(station_info)
 
 
+@app.route("/api/v1.0/<start>")
+def start(start):
+
+    
+
+
+@app.route("/api/v1.0/<start>/<end>")
+def start_end(start, end):
+
 
 if __name__ == "__main__":
     app.run(debug=True)
