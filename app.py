@@ -30,7 +30,7 @@ def home():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/<start>"
+        f"/api/v1.0/<start><br/>"
         f"/api/v1.0/<start>/<end>"
     )
 
@@ -76,24 +76,6 @@ def tobs():
     session.close()
 
     return jsonify(station_info)
-
-@app.route("/api/v1.0/<start>")
-def start(start):
-
-    
-
-
-
-@app.route("/api/v1.0/<start>/<end>")
-def start_end(start, end):
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
