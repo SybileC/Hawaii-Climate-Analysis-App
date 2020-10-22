@@ -37,20 +37,44 @@ def home():
 @app.route("/api/v1.0/precipitation")
 def precipitation():
 
-    data = session.query(Measurement.date, Measurement.prcp).filter(Measurement.date > year).all()
+    session = Session(engine)
+
+    data = session.query(Measurement.date, Measurement.prcp).filter(Measurement.date > 2016-8-23).all()
 
     session.close()
 
     precipitation = []
-    for prcp in results:
+    for date, prcp in data:
         precipitation_dict = {}
-        passenger_dict["name"] = name
-        passenger_dict["age"] = age
-        passenger_dict["sex"] = sex
+        precipitation_dict['date'] = date
+        precipitation_dict['prcp'] = prcp
         precipitation.append(precipitation_dict)
 
     return jsonify(precipitation_dict)
 
+
+@app.route("/api/v1.0/stations")
+def stations():
+    
+    session = Session(engine)
+    
+    stations = session.query(Measurement.station).distinct().all()
+
+    session.close()
+
+    return jsonify(stations)
+
+
+@app.route("/api/v1.0/tobs")
+def tobs():
+
+    session = Session(engine)
+    
+    station_info = session.query(Measurement.date, Measurement.tobs).filter(Measurement.station == 'USC00519281').all()
+
+    session.close()
+
+    return jsonify(station_info)
 
 
 
