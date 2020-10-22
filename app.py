@@ -31,6 +31,7 @@ def home():
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
         f"/api/v1.0/<start>"
+        f"/api/v1.0/<start>/<end>"
     )
 
 
@@ -70,11 +71,16 @@ def tobs():
 
     session = Session(engine)
     
-    station_info = session.query(Measurement.date, Measurement.tobs).filter(Measurement.station == 'USC00519281').all()
+    station_info = session.query(Measurement.date, Measurement.tobs).filter(Measurement.station == 'USC00519281').filter(Measurement.date > 2016-8-23).all()
 
     session.close()
 
     return jsonify(station_info)
+
+@app.route("/api/v1.0/<start>/<end>")
+def start_end(start, end):
+
+
 
 
 
