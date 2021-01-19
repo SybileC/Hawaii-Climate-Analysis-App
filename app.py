@@ -4,6 +4,7 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
+import datetime as dt
 
 from flask import Flask, jsonify
 
@@ -39,8 +40,10 @@ def home():
 def precipitation():
 
     session = Session(engine)
+    
+    year = dt.date(2017, 8, 23) - dt.timedelta(days=365)
 
-    data = session.query(Measurement.date, Measurement.prcp).filter(Measurement.date > 2016-8-23).all()
+    data = session.query(Measurement.date, Measurement.prcp).filter(Measurement.date >= year).all()
 
     session.close()
 
@@ -71,21 +74,27 @@ def tobs():
 
     session = Session(engine)
     
-    station_info = session.query(Measurement.station, Measurement.date, Measurement.tobs).filter(Measurement.station == 'USC00519281').filter(Measurement.date > 2016-8-23).all()
+    year = dt.date(2017, 8, 23) - dt.timedelta(days=365)
+    
+    station_info = session.query(Measurement.station, Measurement.date, Measurement.tobs).\
+        filter(Measurement.station == 'USC00519281').\
+            filter(Measurement.date > year).all()
 
     session.close()
 
     return jsonify(station_info)
 
 
-@app.route("/api/v1.0/<start>")
-def start(start):
+# @app.route("/api/v1.0/<start>")
+# def start(start):
+
 
     
 
 
-@app.route("/api/v1.0/<start>/<end>")
-def start_end(start, end):
+# @app.route("/api/v1.0/<start>/<end>")
+# def start_end(start, end):
+
 
 
 if __name__ == "__main__":
