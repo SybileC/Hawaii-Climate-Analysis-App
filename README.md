@@ -1,4 +1,4 @@
-# sqlalchemy-challenge
+# Hawaii-Climate-Analysis-App
 
 - Designed a Flask API based on the queries developed in climate_starter.ipynb file
     - Home Page (/)
