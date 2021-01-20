@@ -19,4 +19,4 @@
 
     - Calculation Page (/api/v1.0/<start>/<end>)
         - Displaying a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range
-        ![Calculation Page](Images/Calculation_page)
+        ![Calculation Page](Images/Calculation_page.PNG)
