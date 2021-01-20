@@ -7,4 +7,4 @@
     
     - Precipitation page (/api/v1.0/precipitation)
         - Displaying the last 12 months of precipitation data
-        ![Precipitation Page](Images/Precipiation_page.PNG)
+        ![Precipitation Page](Images/Precipitation_page.PNG)
