@@ -52,7 +52,7 @@ def precipitation():
     # Close session
     session.close()
 
-    
+    # Create a dictionary from the row data and append to a list of precipitation
     precipitation = []
     for date, prcp in data:
         precipitation_dict = {}
